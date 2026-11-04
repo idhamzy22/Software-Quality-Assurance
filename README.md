@@ -78,20 +78,38 @@ sudo apt --fix-broken install -y
 sudo dpkg --configure -a
 ```
 
-#### c. Verifikasi Runtime Node.js & npm
-Pastikan Node.js dan npm sudah terpasang dan dapat diakses:
+#### c. Instalasi Runtime Node.js & npm (Jika Belum Terpasang)
+Jika Node.js dan npm belum terpasang di sistem WSL Ubuntu Anda, lakukan instalasi menggunakan salah satu opsi berikut:
+
+- **Opsi 1: Menggunakan NodeSource (Direkomendasikan - Node.js LTS v20.x):**
+  ```bash
+  # Menambahkan repository resmi NodeSource LTS
+  curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+
+  # Instalasi Node.js (sudah langsung mencakup npm)
+  sudo apt install -y nodejs
+  ```
+
+- **Opsi 2: Menggunakan Repository Bawaan Ubuntu (Alternatif):**
+  ```bash
+  sudo apt install -y nodejs npm
+  ```
+
+#### d. Verifikasi Runtime Node.js & npm
+Setelah instalasi selesai, pastikan runtime Node.js dan npm sudah aktif dan dapat diakses:
 ```bash
 node -v
 npm -v
 ```
 
-#### d. Instalasi Dependensi Pustaka GUI/X11 Cypress
+#### e. Instalasi Dependensi Pustaka GUI/X11 Cypress
 Cypress membutuhkan pustaka sistem Linux berikut agar browser headless / GUI serta server display virtual (Xvfb/X11) dapat berjalan normal:
 ```bash
 sudo apt install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
 ```
 
-#### e. Instalasi Dependensi Proyek
+#### f. Instalasi Dependensi Proyek
+Masuk ke direktori proyek dan pasang dependensi yang tercantum pada `package.json`:
 ```bash
 npm install
 ```
